@@ -31,7 +31,7 @@ public class Chap05_01Controller {
         model.addAttribute("userPwd", userPwd);
         return "viewPage05_01";
     }
-    @GetMapping("/chap05_04/{id1}/{id2}")
+    @GetMapping("/chap05_04/{id1}/user/{id2}")
     public String requestMethod4(@MatrixVariable(pathVar = "id1") MultiValueMap<String, String> var1, @MatrixVariable(pathVar = "id2") MultiValueMap<String, String> var2, Model model) {
         model.addAttribute("title1", var1);
         model.addAttribute("title2", var2);
