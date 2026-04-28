@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>파일 전송 결과 페이지</title>
+</head>
+<body>
+    <h1 th:text="${title}"></h1>
+    <p>원본 파일 이름: <span th:utext="${originFileName}"></span></p>
+    <p>컴퓨터 저장 파일 이름: <span th:utext="${saveFileName}"></span></p>
+    <p><img th:src="'/images/' + ${saveFileName}" width="250"/></p>
+</body>
+</html>
