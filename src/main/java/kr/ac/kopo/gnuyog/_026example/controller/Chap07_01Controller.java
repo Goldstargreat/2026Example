@@ -1,12 +1,10 @@
 package kr.ac.kopo.gnuyog._026example.controller;
 
+import kr.ac.kopo.gnuyog._026example.domain.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,14 +14,18 @@ import java.io.IOException;
 public class Chap07_01Controller {
 
     @GetMapping("/form")
-    public String requestForm(){
+    public String requestForm()
+    {
         return "viewFilePage";
     }
 
     @PostMapping("/form")
-    public String requestFileUploadResult(MultipartHttpServletRequest request, Model model){
-        String name = request.getParameter("name");
-        MultipartFile file = request.getFile("fileImage");
+    public String requestFileUploadResult(@ModelAttribute Member member, Model model){
+//    public String requestFileUploadResult(@RequestParam("name")String name, @RequestParam("fileImage")MultipartFile file, Model model){
+//    public String requestFileUploadResult(MultipartHttpServletRequest request, Model model){
+
+        String name = member.getName();
+        MultipartFile file = member.getFileImage();
 
         String originFileName = file.getOriginalFilename();
         File saveFile = new File("d:\\upload\\"+ name + "_" + originFileName);
