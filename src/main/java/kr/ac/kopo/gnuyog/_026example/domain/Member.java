@@ -4,7 +4,8 @@ import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
-public class Member {
+public class Member
+{
     // private String id;
 //     private String passwd;
 //     private String city;
