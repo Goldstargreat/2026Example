@@ -24,7 +24,7 @@ public class Ex09Controller {
     @InitBinder
     public void initBinder(WebDataBinder binder)
     {
-//        binder.setAllowedFields("id", "city", "sex");
+//        binder.setAllowedFields("id", "city", "gender");
         binder.setDisallowedFields("passwd", "city");
     }
 }
