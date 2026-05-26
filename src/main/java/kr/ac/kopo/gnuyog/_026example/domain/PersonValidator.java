@@ -24,7 +24,7 @@ public class PersonValidator implements Validator
 
         if (name == null || name.trim().isEmpty())
             ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", null, "이름을 입력하세요.");
-        if (age <= 0)
+        if (age < 0)
             errors.rejectValue("age", null, "나이를 입력하세요.");
         if (email == null || email.trim().isEmpty())
             ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", null, "이메일을 입력하세요.");
