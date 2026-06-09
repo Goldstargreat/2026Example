@@ -42,7 +42,7 @@ public class Chap10_01Controller
     @GetMapping("/home/main")
     public String requestMethod5(Model model)
     {
-        model.addAttribute("viewName", "home.html");
+        model.addAttribute("viewName", "homePage.html");
         return "homePage";
     }
 
