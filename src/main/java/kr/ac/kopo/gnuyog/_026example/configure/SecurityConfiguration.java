@@ -16,7 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration {
+public class SecurityConfiguration
+{
     //    암호화 설정
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -25,7 +26,8 @@ public class SecurityConfiguration {
 
     //    사용자 정보 등록 설정
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService()
+    {
         UserDetails user = User.builder()
                 .username("guest")
                 .password(passwordEncoder().encode("g1234"))
@@ -48,7 +50,8 @@ public class SecurityConfiguration {
 
     //    특정 URI에 접근할 수 있는 접근 권한 설정
     @Bean
-    SecurityFilterChain examMethod01(HttpSecurity http) throws Exception{
+    SecurityFilterChain examMethod01(HttpSecurity http) throws Exception
+    {
         http.authorizeHttpRequests(
                 authorize -> authorize
                         .requestMatchers("/exam10_01/member/**").hasAnyRole("USER", "ADMIN")

@@ -12,43 +12,51 @@ import java.util.Collection;
 
 @Controller
 @RequestMapping("/exam10_01")
-public class Chap10_01Controller {
-
+public class Chap10_01Controller
+{
     @GetMapping("/exam01")
-    public String requestMethod(Model model){
+    public String requestMethod(Model model)
+    {
         return "viewPage10_01";
     }
 
     @GetMapping("/admin/main")
-    public String requestMethod2(Model model){
+    public String requestMethod2(Model model)
+    {
         model.addAttribute("viewName", "adminPage.html");
         return "adminPage";
     }
 
     @GetMapping("/manager/main")
-    public String requestMethod3(Model model){
+    public String requestMethod3(Model model)
+    {
         model.addAttribute("viewName", "managerPage.html");
         return "managerPage";
     }
 
     @GetMapping("/member/main")
-    public String requestMethod4(Model model){
+    public String requestMethod4(Model model)
+    {
         model.addAttribute("viewName", "memberPage.html");
         return "memberPage";
     }
 
     @GetMapping("/home/main")
-    public String requestMethod5(Model model){
+    public String requestMethod5(Model model)
+    {
+        model.addAttribute("viewName", "homePage.html");
         return "homePage";
     }
 
     @GetMapping("/exam02")
-    public String requestMethod6(Model model){
+    public String requestMethod6(Model model)
+    {
         return "redirect:/exam10_01/member/user";
     }
 
     @GetMapping("/member/user")
-    public String requestMethod7(Authentication authentication, Model model){
+    public String requestMethod7(Authentication authentication, Model model)
+    {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String userName = userDetails.getUsername();
         String password = userDetails.getPassword();
@@ -56,7 +64,8 @@ public class Chap10_01Controller {
         model.addAttribute("password", password);
         model.addAttribute("uri", "/member/user");
         Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
-        for (GrantedAuthority item : authorities){
+        for (GrantedAuthority item : authorities)
+        {
             model.addAttribute("role", item + " ");
         }
 
