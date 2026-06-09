@@ -37,7 +37,7 @@ public class SecurityConfiguration
     {
         return new BCryptPasswordEncoder();
     }
-    // user
+    // 사용자 정보 등록 설정
     @Bean
     public UserDetailsService userDetailsService()
     {
