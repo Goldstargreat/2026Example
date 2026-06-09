@@ -23,9 +23,9 @@ public class SecurityConfiguration
     {
         http.authorizeHttpRequests(
               authorize -> authorize
-                      .requestMatchers("/member/**").hasAnyRole("USER", "ADMIN")
-                      .requestMatchers("/manager/**").hasRole("MANAGER")
-                      .requestMatchers("/admin/**").hasRole("ADMIN")
+                      .requestMatchers("/exam10_01/member/**").hasAnyRole("USER", "ADMIN")
+                      .requestMatchers("/exam10_01/manager/**").hasRole("MANAGER")
+                      .requestMatchers("/exam10_01/admin/**").hasRole("ADMIN")
                       .anyRequest().permitAll()
             ).formLogin(Customizer.withDefaults()
         );
