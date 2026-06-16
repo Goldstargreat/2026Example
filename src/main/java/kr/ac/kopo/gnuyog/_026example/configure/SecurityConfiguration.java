@@ -20,7 +20,8 @@ public class SecurityConfiguration
 {
     //    암호화 설정
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder()
+    {
         return new BCryptPasswordEncoder();
     }
 
