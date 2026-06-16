@@ -1,6 +1,7 @@
 package kr.ac.kopo.gnuyog._026example.controller;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -92,4 +93,23 @@ public class Chap10_01Controller
         return "viewPage10_04";
     }
 
+    // 사용자 정의 로그인과 관련됨
+    @GetMapping("/exam05")
+    public String requestMethod12(Model model)
+    {
+        return "viewPage10_05";
+    }
+    @GetMapping("/admin")
+    public String requestMethod13(Authentication user, Model model)
+    {
+        model.addAttribute("username", user.getName());
+        return "viewPage10_05_result";
+    }
+
+    // logout
+    @GetMapping("/logout")
+    public String requestMethod14(Authentication user, Model model)
+    {
+        return "viewPage10_05";
+    }
 }
