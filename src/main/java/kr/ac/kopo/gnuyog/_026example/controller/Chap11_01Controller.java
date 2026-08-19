@@ -3,8 +3,6 @@ package kr.ac.kopo.gnuyog._026example.controller;
 import kr.ac.kopo.gnuyog._026example.exception.UserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
