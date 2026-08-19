@@ -19,19 +19,23 @@ public class Chap11_01Controller
     }
 
     @GetMapping("/exam02")
-    public void requestMethod02() throws Exception
+    public void requestMethod02() throws Exception // 이 메서드가 예외를 밖으로 던질 수 있다고 선언
     {
         throw new Exception(new UserException("UserException 메시지입니다."));
+        // Exception의 생성자 중 Exception(Throwable cause)를 사용. 즉 UserException을 원인(cause)으로 감싼 새로운 Exception을 만들어서 던짐.
+        // Exception(Throwable cause) 생성자는 내부적으로 message = cause.toString()으로 설정하기 때문에,
+        // 이 Exception의 메시지는 UserException의 toString() 결과가 됨.
     }
 
     @GetMapping("/exam03")
-    public void requestMethod03()
+    public void requestMethod03()  // 이번엔 UserException을 직접(감싸지 않고) 던짐.
     {
         throw new UserException("UserException @ExceptionHandler 예제 메시지입니다.");
     }
 
 //    @ExceptionHandler(UserException.class)
 //    public String handlerException(UserException ex, Model model)
+    // 매개변수로 실제 잡힌 예외 객체(ex)와 Model을 받음.
 //    {
 //        model.addAttribute("data1", ex.getMessage());
 //        model.addAttribute("data2", ex.toString);

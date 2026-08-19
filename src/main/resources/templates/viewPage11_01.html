@@ -7,7 +7,9 @@
 <body>
     <h1>@ExceptionHandler를 이용한 예외 처리</h1>
     <h3>예외 메시지: [[${data1}]]</h3>
+    <!-- Thymeleaf 문법 [[${...}]]: 텍스트를 그대로 출력. data1(예외 메시지)이 표시됨. -->
     <h3>예외 처리 클래스의 정보: [[${data2}]]</h3>
+    <!-- data2는 예외 객체 자체 → Thymeleaf가 자동으로 toString() 호출. -->
 
 </body>
 </html>
