@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/exam01")
+@RequestMapping("/exam13_01")
 public class Chap13_01Controller
 {
    @GetMapping
