@@ -16,6 +16,8 @@ public class Chap11_01Controller
     public void requestMethod01()
     {
         System.out.println(new IllegalArgumentException("요청에 실패했습니다.").getMessage());
+        // 반환 타입이 void이고 @ResponseStatus가 붙어있으니,
+        // "이 메서드가 정상적으로 끝나면 무조건 지정된 상태코드로 응답해라"라는 규칙을 적용함
     }
 
     @GetMapping("/exam02")
