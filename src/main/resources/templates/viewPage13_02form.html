@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>(JSON)RESTful 웹 서비스 예제 입력 폼</title>
+<!--    문자 인코딩을 UTF-8로 지정하고, 브라우저 탭에 표시될 제목을 설정합니다.-->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<!--    jQuery 라이브러리를 CDN에서 불러옵니다. 뒤에서 $.ajax()를 쓰기 위해 필요합니다.-->
+    <script>
+        function myMethod()
+        {
+            // myMethod라는 자바스크립트 함수를 정의합니다. "전송" 버튼을 누르면 실행됩니다.
+            var form1 = document.form1;
+            // HTML에서 name="form1"로 지정한 폼 요소를 가져와 form1 변수에 저장합니다.
+            var obj = new Object();
+            // 비어있는 자바스크립트 객체(Object)를 하나 생성합니다.
+            obj.name = form1.name.value;
+            obj.age = form1.age.value;
+            obj.email = form1.email.value;
+            // 폼의 각 input 요소(name, age, email)에 입력된 값을 읽어서 obj 객체의 속성으로 저장합니다.
+            var jsonData = JSON.stringify(obj);
+            // 자바스크립트 객체 obj를 JSON 문자열로 변환합니다. 예: {"name":"홍길동","age":"20","email":"a@b.com"}
+
+            $.ajax({
+                type: "POST",
+                url: "/exam13_02",
+                data: jsonData,
+                contentType: "application/json; charset=UTF-8",
+            //     jQuery의 AJAX 요청을 보냅니다.
+            //
+            //         type: "POST" → HTTP POST 방식으로 전송
+            // url: "/exam13_02" → 요청을 보낼 서버 주소 (컨트롤러의 @RequestMapping과 매칭)
+            // data: jsonData → 위에서 만든 JSON 문자열을 요청 본문(body)에 담아 전송
+            // contentType: "application/json; charset=UTF-8" → 전송하는 데이터 형식이 JSON임을 서버에 알림
+                // (이게 있어야 @RequestBody가 정상 동작함)
+                success: function (data)
+                {
+                    alert("success!\n" + data + "\n" + jsonData);
+                },
+
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    alert("Fail! " + textStatus);
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+<h2>JSON 데이터 전송</h2>
+
+<form method="post" name="form1">
+    <p>이름: <input type="text" name="name"></p>
+    <p>나이: <input type="text" name="age"></p>
+    <p>이메일: <input type="text" name="email"></p>
+<!--    화면에 보이는 폼. name 속성이 각각 name, age, email인 텍스트 입력창 3개를 만듭니다.
+(자바스크립트에서 form1.name.value처럼 접근할 때 이 name 속성을 사용)-->
+
+    <p>
+        <input type="button" value="전송" onclick="myMethod()">
+    </p>
+<!--    "전송"이라는 버튼. type="button"이라 폼을 그냥 제출(submit)하지 않고, -->
+<!--    클릭 시 onclick 속성에 지정된 myMethod() 함수만 실행합니다. -->
+<!--    (즉, 페이지 새로고침 없이 AJAX로 데이터를 보냄)-->
+</form>
+</body>
+</html>

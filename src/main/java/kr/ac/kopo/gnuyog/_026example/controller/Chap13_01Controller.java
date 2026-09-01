@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Chap13_01Controller
 {
    @GetMapping
-   public String showForm() {
+   public String showForm()
+   {
        return "viewPage13_form";
    }
    // @RequestBody는 폼의 input 태그의 name과 사용자가 입력 된 값을 사용해서
