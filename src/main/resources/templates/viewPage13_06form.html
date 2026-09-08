@@ -7,7 +7,13 @@
 <body>
     <h2>@PutMapping RESTful 웹 서비스 입력 폼</h2>
     <form action="./exam13_06" method="post">
+<!--        → 폼을 제출하면 현재 경로 기준 상대 경로인 ./exam13_06(즉 /exam13_06)으로 POST 방식으로 전송합니다.-->
+<!--        여기서 method="post"인 이유: HTML <form>은 PUT을 직접 지원하지 않기 때문에,
+실제로는 POST로 보내고 아래 hidden 필드로 "진짜는 PUT이야"라고 알려주는 방식(메서드 오버라이딩)을 씁니다.-->
         <input type="hidden" name="_method" value="put">
+        <!--        → 화면에는 보이지 않는 입력 필드로, _method=put이라는 값을 함께 전송합니다.
+스프링의 HiddenHttpMethodFilter가 이 값을 읽어서 실제 요청을 PUT으로 바꿔줍니다.
+그래야 컨트롤러의 @PutMapping 메서드가 실행됩니다.-->
         <p>이름: <input name="name"></p>
         <p>나이: <input name="age"></p>
         <p>이메일: <input name="email"></p>
