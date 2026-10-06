@@ -1,29 +1,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Chap14-JPA-First-Exam</title>
+	<title>Chap14-JPA-First-Exam</title>
+	<script>
+		function deleteMember(id)
+		{
+			if(confirm("Are you sure you want to do this?"))
+			{
+				location.href = "/exam14_01/delete/" + id;
+			}
+		}
+	</script>
 </head>
 <body>
-	<div align="center">
-		<h3>JPA 데이터베이스</h3>
-		<a th:href="@{/exam14_01/new}">Member 데이터 삽입</a> <br>
-		<br>
-		<table border="1" cellpadding="10">
-			<tr>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>나이</th>
-				<th>이메일</th>
-				<th>비고</th>
-			</tr>
-			<tr th:each="member : ${memberList}">
-				<td th:text="${member.id}"></td>
-				<td th:text="${member.name}"></td>
-				<td th:text="${member.age}"></td>
-				<td th:text="${member.email}"></td>
-				<td><a th:href="@{'/exam14_01/edit/' + ${member.id}}">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;
-					<a th:href="@{'/exam14_01/delete/' + ${member.id}}">Delete</a></td>
-			</tr>
-		</table>
-	</div>
+<div align="center">
+	<h3>JPA 데이터베이스</h3>
+	<a th:href="@{/exam14_01/new}">Member 데이터 삽입</a> <br>
+	<br>
+	<table border="1" cellpadding="10">
+		<tr>
+			<th>아이디</th>
+			<th>이름</th>
+			<th>나이</th>
+			<th>이메일</th>
+			<th>비고</th>
+		</tr>
+		<tr th:each="member : ${memberList}">
+			<td th:text="${member.id}"></td>
+			<td th:text="${member.name}"></td>
+			<td th:text="${member.age}"></td>
+			<td th:text="${member.email}"></td>
+			<td><a th:href="@{'/exam14_01/edit/' + ${member.id}}">Edit</a>
+				<a href="#"
+				   th:onclick="'deleteMember(' + ${member.id} + '); return false;'">Delete</a></td>
+		</tr>
+	</table>
+</div>
 </body>
 </html>
