@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
-public class Ex02Controller {
+public class Ex02Controller
+{
     @RequestMapping(value = "exam02", method = RequestMethod.GET)
-    public String requestMethod(){
+    public String requestMethod()
+    {
         return "<h1>@RestController입니다.</h1>";
     }
 }

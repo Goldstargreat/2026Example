@@ -1,15 +1,17 @@
 package kr.ac.kopo.gnuyog._026example.controller;
 
+import kr.ac.kopo.gnuyog._026example.domain.Member;
 import kr.ac.kopo.gnuyog._026example.domain.Member3;
 import kr.ac.kopo.gnuyog._026example.repository.Member3Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.oauth2.resourceserver.OpaqueTokenDsl;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 // JPA 첫번째 예제
 @Controller
@@ -48,6 +50,26 @@ public class Chap14_01Controller
     public String insertMember3(@ModelAttribute("member") Member3 member3)
     {
         repository.save(member3);
+        return "redirect:/exam14_01";
+    }
+    // Update(update)할 내용을 입력하는 부분
+    @GetMapping("/edit/{id}")
+    public String updateInputMethod(@PathVariable(name = "id") int id, Model model)
+    {
+        Optional<Member3> member3 = repository.findById(id);
+        model.addAttribute("member", member3);
+        return "viewPage02_edit";
+    }
+    @PostMapping("/update")
+    public String updateMember(@ModelAttribute("member") Member3 member3)
+    {
+        repository.save(member3);
+        return "redirect:/exam14_01";
+    }
+    @GetMapping("delete/{id}")
+    public String deleteMember(@PathVariable(name = "id") int id)
+    {
+        repository.deleteById(id);
         return "redirect:/exam14_01";
     }
 }

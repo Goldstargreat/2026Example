@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chap14</title>
+</head>
+<body>
+<div align="center">
+    <h3>기존 Member3 수정</h3>
+    <form action="#" th:action="@{/exam14_01/update}" th:object="${member}"
+          method="post">
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>id:</td>
+                <td><input type="text" th:field="*{id}" readonly/></td>
+            </tr>
+            <tr>
+                <td>이름:</td>
+                <td><input type="text" th:field="*{name}" /></td>
+            </tr>
+            <tr>
+                <td>나이:</td>
+                <td><input type="text" th:field="*{age}" /></td>
+            </tr>
+            <tr>
+                <td>이메일:</td>
+                <td><input type="text" th:field="*{email}" /></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><button type="submit">Update</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
