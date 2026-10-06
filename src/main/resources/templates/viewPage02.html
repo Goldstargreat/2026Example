@@ -31,7 +31,7 @@
 			<td th:text="${member.email}"></td>
 			<td><a th:href="@{'/exam14_01/edit/' + ${member.id}}">Edit</a>
 				<a href="#"
-				   th:onclick="'deleteMember(' + ${member.id} + '); return false;'">Delete</a></td>
+				   th:onclick="'deleteMember(' + ${member.id} + '); return false;'">Delete</a></td> //
 		</tr>
 	</table>
 </div>
