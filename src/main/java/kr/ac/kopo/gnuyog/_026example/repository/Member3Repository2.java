@@ -1,13 +1,11 @@
 package kr.ac.kopo.gnuyog._026example.repository;
 
 import jakarta.transaction.Transactional;
-import kr.ac.kopo.gnuyog._026example.domain.Member;
 import kr.ac.kopo.gnuyog._026example.domain.Member3;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 
@@ -22,6 +20,7 @@ public interface Member3Repository2 extends JpaRepository<Member3, Integer>
     // 특정한 id를 지닌 한 행 조회
     @Transactional
     @Query(value = "SELECT * FROM Member3 WHERE ID = ?", nativeQuery = true)
+    // WHERE ID = ?는 "id가 ?인 행만"이라는 뜻이고, ?는 나중에 값이 들어올 빈칸이에요.
 //    @Query(value = "SELECT ENTITY FROM Member3 ENTITY WHERE ID = :e_id")
     public Member3 selectById(@Param("e_id")int id);
 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product2 / Detail 목록</title>
+</head>
+<body>
+
+<h2>상품(Product2) 목록</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>상품명</th>
+        <th>가격</th>
+        <th>상세 설명</th>
+        <th>무게</th>
+        <th>가로</th>
+        <th>세로</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${product2List}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.detail?.description}"></td>
+        <td th:text="${product.detail?.weight}"></td>
+        <td th:text="${product.detail?.width}"></td>
+        <td th:text="${product.detail?.height}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>상세(Detail) 목록</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>설명</th>
+        <th>무게</th>
+        <th>가로</th>
+        <th>세로</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="detail : ${detailList}">
+        <td th:text="${detail.id}"></td>
+        <td th:text="${detail.description}"></td>
+        <td th:text="${detail.weight}"></td>
+        <td th:text="${detail.width}"></td>
+        <td th:text="${detail.height}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
