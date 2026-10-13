@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Team / Player 목록</title>
+</head>
+<body>
+
+<h2>팀(Team) 목록</h2>
+<table border="1">
+    <thead>
+    <tr><th>ID</th><th>팀 이름</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="team : ${teamList}">
+        <td th:text="${team.id}"></td>
+        <td th:text="${team.name}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>선수(Player) 목록</h2>
+<table border="1">
+    <thead>
+    <tr><th>ID</th><th>선수 이름</th><th>소속 팀</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="player : ${playerList}">
+        <td th:text="${player.id}"></td>
+        <td th:text="${player.name}"></td>
+        <td th:text="${player.team?.name}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
