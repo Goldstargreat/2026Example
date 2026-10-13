@@ -6,6 +6,24 @@
 </head>
 <body>
 
+<h2>선수 추가</h2>
+<form th:action="@{/exam14_04/player}" method="post">
+    선수 이름 <input type="text" name="name" required>
+    소속 팀
+    <select name="teamId">
+        <option th:each="team : ${teamList}"
+                th:value="${team.id}"
+                th:text="${team.name}"></option>
+    </select>
+    <button type="submit">추가</button>
+</form>
+
+<h2>팀 추가</h2>
+<form th:action="@{/exam14_04/team}" method="post">
+    팀 이름 <input type="text" name="name" required>
+    <button type="submit">추가</button>
+</form>
+
 <h2>팀(Team) 목록</h2>
 <table border="1">
     <thead>

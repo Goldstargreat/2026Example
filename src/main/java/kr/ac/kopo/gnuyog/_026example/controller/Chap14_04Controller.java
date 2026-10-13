@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("exam14_04")
@@ -20,26 +22,39 @@ public class Chap14_04Controller
     @Autowired
     private PlayerRepository playerRepository;
 
+    // 목록 화면 (저장 코드 없이 조회만 해요)
     @GetMapping
-    public String requestInsert(Model model)
+    public String list(Model model)
     {
-        Team team = new Team();
-        team.setName("토트넘");
-        teamRepository.save(team);          // 1. 팀을 먼저 저장해요.
-
-        Player player1 = new Player();
-        player1.setName("손흥민");
-        player1.setTeam(team);              // 2. 저장된 팀을 선수에 연결해요.
-        playerRepository.save(player1);
-
-        Player player2 = new Player();
-        player2.setName("엄지성");
-        player2.setTeam(team);
-        playerRepository.save(player2);
-
         model.addAttribute("teamList", teamRepository.findAll());
         model.addAttribute("playerList", playerRepository.findAll());
-
         return "viewPage05";
+    }
+
+    // 선수 추가
+    @PostMapping("/player")
+    public String addPlayer(@RequestParam("name") String name,
+                            @RequestParam("teamId") Integer teamId)
+    {
+        Team team = teamRepository.findById(teamId).orElseThrow();
+        // 선택한 팀 id로 DB에서 팀을 찾아요. 없으면 오류가 나요.
+
+        Player player = new Player();
+        player.setName(name);
+        player.setTeam(team);
+        playerRepository.save(player);
+
+        return "redirect:/exam14_04";
+        // 저장 후 목록 화면으로 돌아가요.
+    }
+
+    // 팀 추가 (필요하면 사용)
+    @PostMapping("/team")
+    public String addTeam(@RequestParam("name") String name)
+    {
+        Team team = new Team();
+        team.setName(name);
+        teamRepository.save(team);
+        return "redirect:/exam14_04";
     }
 }
